@@ -22,8 +22,11 @@ public class task03 {
         for (int i = 0; i < message.length(); i++) {
             c = message.charAt(i);
 
-            if (((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) {
-                c = (char) (((int) message.charAt(i)) + k);
+            if (((c >= 'A' && c <= 'Z'))) {
+                c = (char) (((c - 'A' + k) % 26) + 'A');
+            }
+            if (c >= 'a' && c <= 'z') {
+                c = (char) (((c - 'a' + k) % 26) + 'a');
             }
             output = output + c;
         }
