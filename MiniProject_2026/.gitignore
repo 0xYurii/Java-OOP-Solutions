@@ -1,0 +1,24 @@
+# Build output
+/build/
+/dist/
+
+# Compiled classes
+*.class
+
+# NetBeans generated files (safe to ignore)
+nbproject/private/
+build-impl.xml
+genfiles.properties
+built-jar.properties
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.project
+.classpath
+.settings/
