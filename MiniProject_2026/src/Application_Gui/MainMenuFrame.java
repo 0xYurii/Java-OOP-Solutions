@@ -17,7 +17,16 @@ public class MainMenuFrame extends javax.swing.JFrame {
      */
     public MainMenuFrame() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
+    private StudentFrame studentFrameInstance = null;
+    private EventFrame eventFrameInstance = null;
+    private OrganizerFrame organizerFrameInstance = null;
+    private RoomFrame roomFrameInsatance = null;
+    private EquipmentFrame equipmentFrameInsatance = null;
+    private RegistrationFrame registrationFrameInsatance = null;
+    private ReportFrame reportFrameInstance = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,89 +79,109 @@ public class MainMenuFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Manage_Equipment_Btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Manage_Events_Btn)
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Manage_Students_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(47, 47, 47)
-                        .addComponent(Manage_Organizers_Btn)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(Manage_Room_Btn)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Register_Events_Btn)
-                        .addGap(16, 16, 16))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(View_Reports_Btn)
-                .addGap(87, 87, 87)
-                .addComponent(Exit_Btn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(155, 155, 155))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(View_Reports_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(Exit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Manage_Equipment_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Manage_Events_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Manage_Students_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Manage_Organizers_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Manage_Room_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Register_Events_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Manage_Students_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Manage_Organizers_Btn)
-                    .addComponent(Manage_Room_Btn))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Manage_Equipment_Btn)
-                    .addComponent(Manage_Events_Btn)
-                    .addComponent(Register_Events_Btn))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(View_Reports_Btn)
-                    .addComponent(Exit_Btn))
-                .addGap(44, 44, 44))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Manage_Students_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Manage_Organizers_Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Manage_Room_Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Manage_Equipment_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Manage_Events_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Register_Events_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(View_Reports_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(Exit_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Manage_Students_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Manage_Students_BtnActionPerformed
-        new StudentFrame().setVisible(true);        // TODO add your handling code here:
+        if (studentFrameInstance == null || !studentFrameInstance.isDisplayable()) {
+        studentFrameInstance = new StudentFrame();
+        }
+        studentFrameInstance.setVisible(true);
+        studentFrameInstance.toFront();       
     }//GEN-LAST:event_Manage_Students_BtnActionPerformed
 
     private void Manage_Organizers_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Manage_Organizers_BtnActionPerformed
-         new OrganizerFrame().setVisible(true);
+        if(organizerFrameInstance == null || !organizerFrameInstance.isDisplayable()){
+            organizerFrameInstance = new OrganizerFrame();
+        } 
+        new OrganizerFrame().setVisible(true);
+        organizerFrameInstance.toFront();
     }//GEN-LAST:event_Manage_Organizers_BtnActionPerformed
 
     private void Manage_Room_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Manage_Room_BtnActionPerformed
-        new RoomFrame().setVisible(true); // TODO add your handling code here:
+        if(roomFrameInsatance == null || !roomFrameInsatance.isDisplayable()){
+            roomFrameInsatance = new RoomFrame();
+        }
+        new RoomFrame().setVisible(true); 
+        roomFrameInsatance.toFront();
     }//GEN-LAST:event_Manage_Room_BtnActionPerformed
 
     private void Manage_Equipment_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Manage_Equipment_BtnActionPerformed
-        new EquipmentFrame().setVisible(true);        // TODO add your handling code here:
+        if(equipmentFrameInsatance == null || !equipmentFrameInsatance.isDisplayable()){
+            equipmentFrameInsatance = new EquipmentFrame();
+        }
+        new EquipmentFrame().setVisible(true); 
+        equipmentFrameInsatance.toFront();       
     }//GEN-LAST:event_Manage_Equipment_BtnActionPerformed
 
     private void Manage_Events_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Manage_Events_BtnActionPerformed
-        new EventFrame().setVisible(true);        // TODO add your handling code here:
+        if(eventFrameInstance == null || !eventFrameInstance.isDisplayable()){
+            eventFrameInstance = new EventFrame();
+        }
+        new EventFrame().setVisible(true); 
+        eventFrameInstance.toFront();       
     }//GEN-LAST:event_Manage_Events_BtnActionPerformed
 
     private void Register_Events_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_Events_BtnActionPerformed
         
+        if(registrationFrameInsatance == null || !registrationFrameInsatance.isDisplayable()){
+            registrationFrameInsatance = new RegistrationFrame();
+        }
         
-        Application_Gui.RegistrationFrame regFrame = new Application_Gui.RegistrationFrame();
-        
-        
+      
         Application_Gui.RegistrationFrame.Select_Student_ComboBox.removeAllItems();
         Application_Gui.RegistrationFrame.Select_Event_ComboBox.removeAllItems();
         
@@ -167,19 +196,18 @@ public class MainMenuFrame extends javax.swing.JFrame {
         }
         
         
-        regFrame.setVisible(true);
-          // TODO add your handling code here:
+        new RegistrationFrame().setVisible(true);
+        registrationFrameInsatance.toFront();
     }//GEN-LAST:event_Register_Events_BtnActionPerformed
 
     private void View_Reports_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_View_Reports_BtnActionPerformed
 
-        Application_Gui.ReportFrame rFrame = new Application_Gui.ReportFrame();
-        
-       
+        if(reportFrameInstance == null || !reportFrameInstance.isDisplayable()){
+            reportFrameInstance = new ReportFrame();
+        }
+        new ReportFrame().setVisible(true); 
         Application_Gui.ReportFrame.loadReportsToTable();
-        
-        rFrame.setVisible(true);
-    
+        reportFrameInstance.toFront();
     }//GEN-LAST:event_View_Reports_BtnActionPerformed
 
     private void Exit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_BtnActionPerformed
@@ -191,11 +219,9 @@ public class MainMenuFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+       
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -208,8 +234,59 @@ public class MainMenuFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainMenuFrame().setVisible(true));
+        /* Create and display the form with IPC Singleton Lock */
+        java.awt.EventQueue.invokeLater(() -> {
+            MainMenuFrame mainApp = new MainMenuFrame();
+            
+            final int IPC_PORT = 13337; 
+            
+            try {
+                // Attempt to claim the port lock
+                java.net.ServerSocket serverSocket = new java.net.ServerSocket(IPC_PORT, 1, java.net.InetAddress.getLocalHost());
+                
+                // Lock acquired. We are the Alpha instance.
+                // Spawn a daemon thread to listen for clones trying to start.
+                Thread listenerThread = new Thread(() -> {
+                    while (true) {
+                        try (java.net.Socket socket = serverSocket.accept()) {
+                            // A clone just pinged us. Bring our UI to the front.
+                            java.awt.EventQueue.invokeLater(() -> {
+                                // If minimized, restore it
+                                mainApp.setExtendedState(javax.swing.JFrame.NORMAL);
+                                // Force focus
+                                mainApp.toFront();
+                                mainApp.repaint();
+                            });
+                        } catch (java.io.IOException e) {
+                            break;
+                        }
+                    }
+                });
+                listenerThread.setDaemon(true); // Ensures this thread doesn't prevent application shutdown
+                listenerThread.start();
+                
+                // Safe to display the UI
+                mainApp.setVisible(true);
+
+            } catch (java.net.BindException e) {
+                // Port is already occupied. We are a clone.
+                System.out.println("System: Application is already running. Pinging the master process...");
+                
+                try (java.net.Socket pingSocket = new java.net.Socket(java.net.InetAddress.getLocalHost(), IPC_PORT)) {
+                    // Just establishing the connection sends the signal.
+                } catch (Exception ex) {
+                    // Ignore network hiccups on exit
+                } 
+                
+                // Terminate this duplicate instance immediately
+                System.exit(0);
+                
+            } catch (Exception e) {
+                // Fallback safety net in case of severe network adapter issues
+                mainApp.setVisible(true);
+            }
+        });
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

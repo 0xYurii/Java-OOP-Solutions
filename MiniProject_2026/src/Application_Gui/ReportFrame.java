@@ -10,33 +10,43 @@ package Application_Gui;
  */
 public class ReportFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReportFrame.class.getName());
-
-    /**
+        /**
      * Creates new form ReportFrame
      */
     public ReportFrame() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
     
     public static void loadReportsToTable() {
-        // Get the table model
+        
+        
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) Report_Display_Table.getModel();
         
-        // Wipe existing rows
+        
         model.setRowCount(0);
         
-        // Loop through the master Registration list
+       
         for (Classes.Registration r : Application_Gui.RegistrationFrame.Registration_List) {
             Object[] row = {
-                r.registrationId,
-                r.student.name,
-                r.event.title,
-                r.registrationDate,
-                r.status
+                r.registrationId,         
+                r.registrationDate,      
+                r.status,                 
+                r.student.name,          
+                r.student.email,         
+                r.student.level,          
+                r.student.department,     
+                r.event.code,            
+                r.event.title,            
+                r.event.date,             
+                r.event.startHour,       
+                r.event.endHour,          
+                r.event.maxParticipants 
             };
             model.addRow(row);
         }
+    
     }
 
     /**
@@ -51,17 +61,17 @@ public class ReportFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Report_Display_Table = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Report_Display_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Reg ID", "Reg Date", "Status", "Student Num", "Email", "Level", "Dpartment", "Event Code", "Event Title", "Event Date", "Start Hour", "End Hour", "Max Participants"
             }
         ));
         jScrollPane1.setViewportView(Report_Display_Table);
@@ -70,10 +80,9 @@ public class ReportFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

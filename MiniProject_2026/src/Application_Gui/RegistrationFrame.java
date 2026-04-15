@@ -10,7 +10,7 @@ package Application_Gui;
  */
 public class RegistrationFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrationFrame.class.getName());
+    
 
     public static java.util.ArrayList<Classes.Registration> Registration_List = new java.util.ArrayList<>();
     /**
@@ -18,6 +18,8 @@ public class RegistrationFrame extends javax.swing.JFrame {
      */
     public RegistrationFrame() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,7 +37,7 @@ public class RegistrationFrame extends javax.swing.JFrame {
         Select_Event_ComboBox = new javax.swing.JComboBox<>();
         Select_Student_ComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Select Student:");
 

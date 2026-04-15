@@ -4,6 +4,7 @@
 
 # Compiled classes
 *.class
+**/*.form
 
 # NetBeans generated files (safe to ignore)
 nbproject/private/

@@ -12,13 +12,14 @@ import Application_Gui.StudentFrame;
  */
 public class Add_Student extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Add_Student.class.getName());
-
+   
     /**
      * Creates new form Add_Student
      */
     public Add_Student() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,7 +41,7 @@ public class Add_Student extends javax.swing.JFrame {
         Student_Departement_TextField = new javax.swing.JTextField();
         Submit_Student_Btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Name:");
 
@@ -60,24 +61,29 @@ public class Add_Student extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(43, 43, 43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Submit_Student_Btn)
-                    .addComponent(Student_Name_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(Student_Email_TextField)
-                    .addComponent(Student_Level_TextField)
-                    .addComponent(Student_Departement_TextField))
-                .addContainerGap(60, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(58, 58, 58))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Student_Name_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                            .addComponent(Student_Email_TextField)
+                            .addComponent(Student_Level_TextField)
+                            .addComponent(Student_Departement_TextField))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(Submit_Student_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,8 +104,8 @@ public class Add_Student extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Student_Departement_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(Submit_Student_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(Submit_Student_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -107,8 +113,24 @@ public class Add_Student extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Submit_Student_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_Student_BtnActionPerformed
-        String name = Student_Name_TextField.getText();
-        String email = Student_Email_TextField.getText();
+        String name = Student_Name_TextField.getText().trim().toLowerCase();
+        String email = Student_Email_TextField.getText().trim();
+
+        
+        String emailRegex = "^(?=.{1,254}$)(?=.{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+"
+                          + "(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+                          + "(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\\.)+"
+                          + "[A-Za-z]{2,}$";
+
+        if (!email.matches(emailRegex)) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid email format. Try again.",
+                "Validation Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
         String level = Student_Level_TextField.getText();
         String department = Student_Departement_TextField.getText();
         
@@ -118,6 +140,20 @@ public class Add_Student extends javax.swing.JFrame {
         }
         
         int id = StudentFrame.Students_List.size() + 1;
+        
+        boolean duplicateEmail = StudentFrame.Students_List.stream()
+            .anyMatch(s -> s.email.equalsIgnoreCase(email));
+        boolean duplicateName = StudentFrame.Students_List.stream()
+            .anyMatch(s -> s.name.equalsIgnoreCase(name));
+
+        if (duplicateEmail) {
+            javax.swing.JOptionPane.showMessageDialog(this, "A student with this email is already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (duplicateName) {
+            javax.swing.JOptionPane.showMessageDialog(this, "A student with this name is already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         Classes.Student s = new Classes.Student(id, name, email, level, department);
 
@@ -129,6 +165,8 @@ public class Add_Student extends javax.swing.JFrame {
         System.out.println("System: Student " + name + " injected successfully.");
 
         
+        javax.swing.JOptionPane.showMessageDialog(this, "Student " + name + " added successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
         this.dispose();
     }//GEN-LAST:event_Submit_Student_BtnActionPerformed
 

@@ -12,13 +12,14 @@ import Application_Gui.RoomFrame;
  */
 public class Add_Room extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Add_Room.class.getName());
-
+   
     /**
      * Creates new form Add_Room
      */
     public Add_Room() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,7 +39,7 @@ public class Add_Room extends javax.swing.JFrame {
         Capacity_TextField = new javax.swing.JTextField();
         Add_Room_Btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jjjj.setText("Room Number:");
 
@@ -57,26 +58,24 @@ public class Add_Room extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                        .addComponent(Add_Room_Btn)
-                        .addGap(144, 144, 144))
+                        .addComponent(jLabel3)
+                        .addGap(85, 85, 85)
+                        .addComponent(Capacity_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(85, 85, 85)
-                                .addComponent(Capacity_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jjjj)
-                                    .addComponent(jLabel2))
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Room_Number_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(Building_TextField))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jjjj)
+                            .addComponent(jLabel2))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Room_Number_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(Building_TextField))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(134, Short.MAX_VALUE)
+                .addComponent(Add_Room_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,27 +92,58 @@ public class Add_Room extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Capacity_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(Add_Room_Btn)
-                .addGap(34, 34, 34))
+                .addGap(31, 31, 31)
+                .addComponent(Add_Room_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Add_Room_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Room_BtnActionPerformed
-        String roomNum = Room_Number_TextField.getText();
-        String building = Building_TextField.getText();
-        String capacityStr = Capacity_TextField.getText();
+                                            
+       
+        String roomNum = Room_Number_TextField.getText().trim();
+        String building = Building_TextField.getText().trim();
+        String capacityStr = Capacity_TextField.getText().trim();
 
-        if (roomNum.isEmpty() || building.isEmpty() || capacityStr.isEmpty()) return;
+        
+        if (roomNum.isEmpty() || building.isEmpty() || capacityStr.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "All fields are strictly required.", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        int capacity = Integer.parseInt(capacityStr); // Convert string to int
+        
+        int capacity;
+        try {
+            capacity = Integer.parseInt(capacityStr);
+            if (capacity <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Capacity must be greater than zero.", "Logic Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Capacity must be a valid integer.", "Type Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
+        boolean duplicateExists = RoomFrame.Room_List.stream()
+            .anyMatch(r -> r.roomNumber.equalsIgnoreCase(roomNum) && r.building.equalsIgnoreCase(building));
+
+        if (duplicateExists) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Room " + roomNum + " already exists in " + building + ".", "Duplicate Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
         Classes.Room r = new Classes.Room(roomNum, building, capacity);
-
         RoomFrame.Room_List.add(r);
         RoomFrame.loadRoomsToTable();
-        this.dispose(); // TODO add your handling code here:
+
+        System.out.println("System: Room " + roomNum + " securely registered in " + building + ".");
+        javax.swing.JOptionPane.showMessageDialog(this, "Room " + roomNum + " added successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        this.dispose(); 
+
     }//GEN-LAST:event_Add_Room_BtnActionPerformed
 
     private void Room_Number_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Room_Number_TextFieldActionPerformed

@@ -14,13 +14,13 @@ import Application_Gui.RoomFrame;
  */
 public class Schedule_Event extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Schedule_Event.class.getName());
-
     /**
      * Creates new form Schedule_Event
      */
     public Schedule_Event() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -50,7 +50,7 @@ public class Schedule_Event extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Event Code:");
 
@@ -80,48 +80,53 @@ public class Schedule_Event extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Start_Hour_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Event_Date_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Event_Title_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Event_Code_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(Max_Participants_Spinner))
-                            .addComponent(End_Hour_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Select_Room_ComboBox, 0, 138, Short.MAX_VALUE)
-                            .addComponent(Select_Organizer_ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(174, 174, 174))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Start_Hour_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Event_Date_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Event_Title_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Event_Code_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(End_Hour_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Max_Participants_Spinner)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(Select_Organizer_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(Select_Room_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))))))))
                 .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(131, 131, 131)
                 .addComponent(Schedule_Event_Btn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,9 +163,9 @@ public class Schedule_Event extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Select_Organizer_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addComponent(Schedule_Event_Btn)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(Schedule_Event_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -168,53 +173,98 @@ public class Schedule_Event extends javax.swing.JFrame {
 
     private void Schedule_Event_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Schedule_Event_BtnActionPerformed
 
-        // 1. Extract raw strings
-        String code = Event_Code_TextField.getText();
-        String title = Event_Title_TextField.getText();
-        String date = Event_Date_TextField.getText();
-        String startStr = Start_Hour_TextField.getText();
-        String endStr = End_Hour_TextField.getText();
         
-        // 2. Extract Spinner value (Max Participants)
+        String code = Event_Code_TextField.getText().trim();
+        String title = Event_Title_TextField.getText().trim();
+        String date = Event_Date_TextField.getText().trim();
+        String startStr = Start_Hour_TextField.getText().trim();
+        String endStr = End_Hour_TextField.getText().trim();
+        
+        
+        if (code.isEmpty() || title.isEmpty() || date.isEmpty() || startStr.isEmpty() || endStr.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "All fields are strictly required.", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
+        int startHour, endHour;
+        try {
+            startHour = Integer.parseInt(startStr);
+            endHour = Integer.parseInt(endStr);
+            
+            if (startHour >= endHour) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Start hour must be strictly before end hour.", "Logic Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Hours must be valid integers.", "Type Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         int maxParticipants = (Integer) Max_Participants_Spinner.getValue();
+        if (maxParticipants <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Event must have at least 1 participant capacity.", "Logic Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
-        // 3. Extract Relational Indices
         int roomIndex = Select_Room_ComboBox.getSelectedIndex();
         int orgIndex = Select_Organizer_ComboBox.getSelectedIndex();
 
-        // Brutal Validation
-        if (code.isEmpty() || title.isEmpty() || date.isEmpty() || startStr.isEmpty() || endStr.isEmpty()) {
-            System.out.println("Validation Error: Missing text fields.");
-            return;
-        }
         if (roomIndex < 0 || orgIndex < 0) {
-            System.out.println("Validation Error: You must create a Room and an Organizer first!");
+            javax.swing.JOptionPane.showMessageDialog(this, "You must select both a valid Room and Organizer.", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // 4. Convert strings to integers for time
-        int startHour = Integer.parseInt(startStr);
-        int endHour = Integer.parseInt(endStr);
-
-        // 5. Retrieve the exact backend objects from your lists
         Classes.Room selectedRoom = RoomFrame.Room_List.get(roomIndex);
         Classes.Organizer selectedOrganizer = OrganizerFrame.Organizer_List.get(orgIndex);
-
-        // 6. Forge the Event Object
-        Classes.Event e = new Classes.Event(code, title, date, startHour, endHour, maxParticipants);
         
-        // 7. Bind the relationships (This links the classes together)
-        e.assignRoom(selectedRoom);
-        selectedOrganizer.createEvent(e); // This maps the event to the organizer's personal list
+        
+        if (maxParticipants > selectedRoom.capacity) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Room capacity (" + selectedRoom.capacity + ") is too small for " + maxParticipants + " participants.", "Constraint Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        // 8. Inject into the global Event list and refresh the UI
-        EventFrame.Event_List.add(e);
+       
+        boolean duplicateCode = EventFrame.Event_List.stream().anyMatch(s -> s.code.equalsIgnoreCase(code));
+        if (duplicateCode) {
+            javax.swing.JOptionPane.showMessageDialog(this, "An event with this code is already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        boolean duplicateTitle = EventFrame.Event_List.stream().anyMatch(s -> s.title.equalsIgnoreCase(title));
+        if (duplicateTitle) {
+            javax.swing.JOptionPane.showMessageDialog(this, "An event with this title is already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        Classes.Event newEvent = new Classes.Event(code, title, date, startHour, endHour, maxParticipants);
+        newEvent.assignRoom(selectedRoom);
+        
+        
+        for (Classes.Event existingEvent : EventFrame.Event_List) {
+            if (existingEvent.room != null && 
+                existingEvent.room.roomNumber.equalsIgnoreCase(selectedRoom.roomNumber) && 
+                existingEvent.room.building.equalsIgnoreCase(selectedRoom.building)) {
+                
+                if (newEvent.hasConflict(existingEvent)) {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                        "Scheduling Conflict: Room " + selectedRoom.roomNumber + " is already booked for '" + existingEvent.title + "' during this timeframe.", 
+                        "Time Collision", 
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+                    return; 
+                }
+            }
+        }
+
+        
+        selectedOrganizer.createEvent(newEvent); 
+        EventFrame.Event_List.add(newEvent);
         EventFrame.loadEventsToTable();
         
-        // 9. Terminate
-        System.out.println("System: Event " + title + " successfully scheduled.");
+        System.out.println("System: Event '" + title + "' successfully scheduled without conflicts.");
+        javax.swing.JOptionPane.showMessageDialog(this, "Event '" + title + "' Scheduled successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
-            // TODO add your handling code here:
     }//GEN-LAST:event_Schedule_Event_BtnActionPerformed
 
 

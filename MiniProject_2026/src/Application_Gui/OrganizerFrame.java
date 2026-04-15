@@ -3,16 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Application_Gui;
-
-import static Application_Gui.RoomFrame.Room_Display_Table;
-import static Application_Gui.RoomFrame.Room_List;
 import static Application_Gui.RoomFrame.loadRoomsToTable;
 
 
 
 public class OrganizerFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OrganizerFrame.class.getName());
+    
 
     /**
      * Creates new form OrganizerFrame
@@ -21,6 +18,8 @@ public class OrganizerFrame extends javax.swing.JFrame {
     
     public OrganizerFrame() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
     
     public static void loadOrganizersToTable() {
@@ -48,7 +47,7 @@ public class OrganizerFrame extends javax.swing.JFrame {
         Search_Organizer_Btn = new javax.swing.JButton();
         Search_Organizer_TextField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Organizer_Display_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,7 +57,7 @@ public class OrganizerFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Number", "Name", "Email", "Club Name"
             }
         ));
         jScrollPane1.setViewportView(Organizer_Display_Table);
@@ -72,24 +71,26 @@ public class OrganizerFrame extends javax.swing.JFrame {
         Search_Organizer_Btn.setText("Search");
         Search_Organizer_Btn.addActionListener(this::Search_Organizer_BtnActionPerformed);
 
+        Search_Organizer_TextField.addActionListener(this::Search_Organizer_TextFieldActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Add_New_Organizer_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Add_New_Organizer_Btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(33, 33, 33)
                         .addComponent(Search_Organizer_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(Search_Organizer_Btn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,11 +103,11 @@ public class OrganizerFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(74, 74, 74)
                 .addComponent(Add_New_Organizer_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
 
         pack();
@@ -145,6 +146,10 @@ public class OrganizerFrame extends javax.swing.JFrame {
             }
             System.out.println("System: Search executed for '" + keyword + "'");
     }//GEN-LAST:event_Search_Organizer_BtnActionPerformed
+
+    private void Search_Organizer_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_Organizer_TextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Search_Organizer_TextFieldActionPerformed
 
     /**
      * @param args the command line arguments

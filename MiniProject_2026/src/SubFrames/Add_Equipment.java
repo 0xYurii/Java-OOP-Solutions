@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package SubFrames;
+import Application_Gui.EquipmentFrame;
 
 /**
  *
@@ -10,13 +11,13 @@ package SubFrames;
  */
 public class Add_Equipment extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Add_Equipment.class.getName());
-
-    /**
+        /**
      * Creates new form Add_Equipment
      */
     public Add_Equipment() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -34,33 +35,33 @@ public class Add_Equipment extends javax.swing.JFrame {
         Quantity_Available_TextField = new javax.swing.JTextField();
         Add_Equipment_Btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Equipment Name:");
 
-        jLabel2.setText("Quantity Available:");
+        jLabel2.setText("Number:");
 
         Add_Equipment_Btn.setText("Add Equipment");
+        Add_Equipment_Btn.addActionListener(this::Add_Equipment_BtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Equipment_Name_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(Quantity_Available_TextField)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(Add_Equipment_Btn)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Equipment_Name_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(Quantity_Available_TextField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addComponent(Add_Equipment_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,13 +74,52 @@ public class Add_Equipment extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(Quantity_Available_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addComponent(Add_Equipment_Btn)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(Add_Equipment_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Add_Equipment_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Equipment_BtnActionPerformed
+                                                          
+        
+        String name = Equipment_Name_TextField.getText().trim().toLowerCase();
+        String qtyStr = Quantity_Available_TextField.getText();
+
+        
+        if (name.isEmpty() || qtyStr.isEmpty()) {
+            System.out.println("Validation Error: Please fill all fields.");
+            return;
+        }
+
+        
+        int qty = Integer.parseInt(qtyStr);
+        int id = Application_Gui.EquipmentFrame.Equipment_List.size() + 1;
+
+        boolean duplicateExists = EquipmentFrame.Equipment_List.stream()
+            .anyMatch(s -> s.name.equalsIgnoreCase(name)); 
+
+        if (duplicateExists) {
+            javax.swing.JOptionPane.showMessageDialog(this, "A equpment with this name already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Classes.Equipment eq = new Classes.Equipment(id, name, qty);
+
+       
+        Application_Gui.EquipmentFrame.Equipment_List.add(eq);
+        Application_Gui.EquipmentFrame.loadEquipmentToList();
+
+        
+        System.out.println("System: Equipment " + name + " injected successfully.");
+        javax.swing.JOptionPane.showMessageDialog(this, "Equipment " + name + " added successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        
+        this.dispose();
+    
+    }//GEN-LAST:event_Add_Equipment_BtnActionPerformed
 
     /**
      * @param args the command line arguments

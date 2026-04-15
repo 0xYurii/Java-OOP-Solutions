@@ -12,13 +12,14 @@ import Application_Gui.OrganizerFrame;
  */
 public class Add_Organizer extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Add_Organizer.class.getName());
-
+    
     /**
      * Creates new form Add_Organizer
      */
     public Add_Organizer() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,15 +39,15 @@ public class Add_Organizer extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Add_Organizer_Btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Club_Name_TextField.addActionListener(this::Club_Name_TextFieldActionPerformed);
 
         Organizer_Name.setText("Organizer Name:");
 
-        jLabel2.setText("Organizer_Email:");
+        jLabel2.setText("Organizer Email:");
 
-        jLabel3.setText("Club_Name:");
+        jLabel3.setText("Club Name:");
 
         Add_Organizer_Btn.setText("Add Organizer");
         Add_Organizer_Btn.addActionListener(this::Add_Organizer_BtnActionPerformed);
@@ -70,11 +71,12 @@ public class Add_Organizer extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(Organizer_Name)
                         .addGap(44, 44, 44)
-                        .addComponent(Organizer_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(Add_Organizer_Btn)))
+                        .addComponent(Organizer_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Add_Organizer_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +93,9 @@ public class Add_Organizer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Club_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(Add_Organizer_Btn)
-                .addGap(52, 52, 52))
+                .addGap(28, 28, 28)
+                .addComponent(Add_Organizer_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -104,18 +106,33 @@ public class Add_Organizer extends javax.swing.JFrame {
     }//GEN-LAST:event_Club_Name_TextFieldActionPerformed
 
     private void Add_Organizer_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Organizer_BtnActionPerformed
-        String name = Organizer_Name_TextField.getText();
+        String name = Organizer_Name_TextField.getText().trim().toLowerCase();
         String email = Organizer_Email_TextField.getText();
         String club = Club_Name_TextField.getText();
 
         if (name.isEmpty() || email.isEmpty() || club.isEmpty()) return;
 
         int id = OrganizerFrame.Organizer_List.size() + 1;
+        
+        boolean duplicateEamil = OrganizerFrame.Organizer_List.stream()
+            .anyMatch(s -> s.email.equalsIgnoreCase(email));
+        boolean duplicateName = OrganizerFrame.Organizer_List.stream()
+             .anyMatch(s -> s.name.equalsIgnoreCase(name) );
+
+        if (duplicateEamil) {
+            javax.swing.JOptionPane.showMessageDialog(this, "A organizer with this email is already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (duplicateName) {
+            javax.swing.JOptionPane.showMessageDialog(this, "A organizer with this name is already registered.", "Duplicate Found", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         Classes.Organizer o = new Classes.Organizer(id, name, email, club);
 
         OrganizerFrame.Organizer_List.add(o);
         OrganizerFrame.loadOrganizersToTable();
-        this.dispose();        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(this, "Organizer " + name + " added successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();      
     }//GEN-LAST:event_Add_Organizer_BtnActionPerformed
 
 
