@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        LibraryItems b1= new Book("The prince", "Yuri", 2);
+        LibraryItems b1= new Book("The prince", "A Train", 2);
         LibraryItems b2= new Book("a Horse", "Bj", 3);
         LibraryItems b3= new Book("Bo jack", "Ahmed void", 6);
 
         LibraryItems m1 = new Magazine("jjk", "DP", 6);
-        LibraryItems m2 = new Magazine("dark angle", "homelander", 4);
+        LibraryItems m2 = new Magazine("hog rider", "homelander", 4);
         LibraryItems m3 = new Magazine("The deep", "firecracker", 6);
 
         Library l = new Library(new ArrayList<>());
