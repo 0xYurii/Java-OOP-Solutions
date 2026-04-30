@@ -9,7 +9,7 @@ public class StorageBox <T>{
         item=val;
     }
     
-    public T getItem(T val){
+    public T getItem(){
         return this.item;
     }
 

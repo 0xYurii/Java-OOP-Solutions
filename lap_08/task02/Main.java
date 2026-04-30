@@ -10,6 +10,7 @@ public class Main {
         
         s.displayItem();
         i.displayItem();
+        b.toString();
         b.displayItem();
     }
 }

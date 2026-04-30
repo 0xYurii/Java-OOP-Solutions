@@ -8,4 +8,9 @@ public class Book extends LibraryItems{
     public void displayInfo(){
         System.out.println("Type book: title: "+title+", author: "+author+", year: "+year);
     }
+
+    @Override
+    public String toString(){
+        return "Type book: title: "+title+", author: "+author+", year: "+year;
+    }
 }
